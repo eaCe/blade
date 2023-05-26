@@ -1,0 +1,24 @@
+package: blade
+version: "0.0.1-dev"
+name: Blade
+author: eaCe
+supportpage: https://github.com/eace/blade
+
+requires:
+    redaxo: ^5.14.0
+    php:
+        version: '>=8.1'
+
+installer_ignore:
+    - node_modules
+    - .git
+    - .gitignore
+    - .github
+    - package.json
+    - yarn.lock
+    - resources
+    - .editorconfig
+    - .eslintrc.js
+    - .stylelintrc.js
+    - lib/composer.json
+    - lib/composer.lock

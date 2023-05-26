@@ -1,0 +1,51 @@
+{
+    "name": "ryangjchandler/standalone-blade",
+    "description": "Use Laravel's Blade templating engine outside of Laravel.",
+    "keywords": [
+        "ryangjchandler",
+        "standalone-blade"
+    ],
+    "homepage": "https://github.com/ryangjchandler/standalone-blade",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ryan Chandler",
+            "email": "support@ryangjchandler.co.uk",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "illuminate/config": "^10.0",
+        "illuminate/support": "^10.0",
+        "illuminate/view": "^10.0"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.0",
+        "pestphp/pest": "^1.20",
+        "spatie/ray": "^1.28"
+    },
+    "autoload": {
+        "psr-4": {
+            "RyanChandler\\Blade\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "RyanChandler\\Blade\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/pest",
+        "test-coverage": "vendor/bin/pest --coverage",
+        "format": "vendor/bin/php-cs-fixer fix --allow-risky=yes"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
