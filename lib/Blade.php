@@ -18,10 +18,10 @@ class Blade
 
     private static function setDirectives($blade)
     {
-        $directives = [
+        $directives = \rex_extension::registerPoint(new \rex_extension_point('BLADE_DIRECTIVES', [
             include 'directives/Article.php',
             include 'directives/Helpers.php',
-        ];
+        ]));
 
         $directives = collect($directives)
             ->flatMap(function ($directive)
