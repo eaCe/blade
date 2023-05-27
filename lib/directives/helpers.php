@@ -4,37 +4,36 @@ use Illuminate\Support\Str;
 
 return [
     /**
-     * user
+     * user.
      */
     'user' => static function () {
-        return "<?php if (rex::getUser()) : ?>";
+        return '<?php if (rex::getUser()) : ?>';
     },
     'enduser' => static function () {
-        return "<?php endif; ?>";
+        return '<?php endif; ?>';
     },
     'userId' => static function () {
-        return "<?php echo rex::getUser()->getId() ?>";
+        return '<?php echo rex::getUser()->getId() ?>';
     },
 
-
     /**
-     * environment
+     * environment.
      */
     'backend' => static function () {
-        return "<?php if (rex::isBackend()) : ?>";
+        return '<?php if (rex::isBackend()) : ?>';
     },
     'endbackend' => static function () {
-        return "<?php endif; ?>";
+        return '<?php endif; ?>';
     },
     'frontend' => static function () {
-        return "<?php if (rex::isFrontend()) : ?>";
+        return '<?php if (rex::isFrontend()) : ?>';
     },
     'endfrontend' => static function () {
-        return "<?php endif; ?>";
+        return '<?php endif; ?>';
     },
 
     /**
-     * string manipulation
+     * string manipulation.
      */
     'kebab' => static function ($value) {
         return '<?php echo ' . Str::kebab($value) . '; ?>';
@@ -53,7 +52,7 @@ return [
     },
 
     /**
-     * dump, dump and die
+     * dump, dump and die.
      */
     'dump' => static function ($vars) {
         return "<?php dump({$vars}); ?>";

@@ -25,7 +25,8 @@ class Blade
     final public function __construct(
         protected string|array $viewPaths,
         protected string $cachePath,
-        protected ?ContainerContract $container = null
+        protected ?ContainerContract $container = null,
+        protected bool $cache = true
     ) {
         $this->viewPaths = Arr::wrap($viewPaths);
 
@@ -35,12 +36,12 @@ class Blade
     protected function init()
     {
         $this->container ??= new Container;
-
         $this->container->singleton('files', fn () => new Filesystem);
         $this->container->singleton('events', fn () => new Dispatcher);
         $this->container->singleton('config', fn () => new Repository([
             'view.paths' => $this->viewPaths,
             'view.compiled' => $this->cachePath,
+            'view.cache' => $this->cache,
         ]));
 
         (new ViewServiceProvider($this->container))->register();
