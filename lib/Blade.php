@@ -2,6 +2,8 @@
 
 include_once __DIR__ . '/vendor/autoload.php';
 
+use Illuminate\Container\Container;
+use Illuminate\Support\Facades\Facade;
 use RyanChandler\Blade\Blade as RBlade;
 
 class Blade
@@ -16,10 +18,43 @@ class Blade
         $this->setDirectives($this->blade);
     }
 
+    /**
+     * @throws rex_exception
+     */
     public static function make(string $view, array $data = []): string
     {
-        $bladeInstance = rex::getProperty('bladeInstance');
-        return $bladeInstance->blade->make($view, $data)->render();
+        $instance = rex::getProperty('bladeInstance');
+
+        if (isset($data['content']) && $data['content'] instanceof rex_article_content) {
+            self::shareValues($instance, $data['content']);
+        }
+
+        return $instance->blade->make($view, $data)->render();
+    }
+
+    /**
+     * share values from article slice.
+     * @throws rex_exception
+     */
+    private static function shareValues(self $instance, rex_article_content $content): void
+    {
+        /** @var rex_article_slice $slice */
+        $slice = $content->getCurrentSlice();
+        $instance->blade->container->singleton('app', Container::class);
+        Facade::setFacadeApplication($instance->blade->container);
+
+        $sql = rex_sql::factory();
+        $sql->setQuery('SELECT * FROM ' . rex::getTable('article_slice') . ' WHERE id = ?', [$slice->getId()]);
+        $sliceData = $sql->getArray()[0];
+
+        foreach ($sliceData as $key => $value) {
+            if (!str_starts_with($key, 'value')
+                && !str_starts_with($key, 'media')
+                && !str_starts_with($key, 'link')) {
+                continue;
+            }
+            $instance->blade->share($key, $value);
+        }
     }
 
     private function setDirectives(RBlade $blade): void

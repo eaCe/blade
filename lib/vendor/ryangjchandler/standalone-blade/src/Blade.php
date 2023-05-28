@@ -25,7 +25,7 @@ class Blade
     final public function __construct(
         protected string|array $viewPaths,
         protected string $cachePath,
-        protected ?ContainerContract $container = null,
+        public ?ContainerContract $container = null,
         protected bool $cache = true
     ) {
         $this->viewPaths = Arr::wrap($viewPaths);
