@@ -23,21 +23,6 @@ Folgende zusätzliche Blade Directives werden unterstützt:
 @frontend
     // environment is frontend
 @endfrontend
-
-// hello-world
-@kebab('Hello World')
-
-// hello_world
-@snake('Hello World')
-
-// helloWorld
-@camel('Hello World')
-
-// HELLOWORLD
-@upper('Hello World')
-
-// helloworld
-@lower('Hello World')
 ```
 
 **Helpers strings**
