@@ -6,7 +6,21 @@ Das Addon ermöglicht die Verwendung von Blade Templates in REDAXO.
 
 Folgende zusätzliche Blade Directives werden unterstützt:
 
-**Helpers REDXAO**
+#### Article
+
+```blade
+// same as REX_ARTICLE[]
+@article
+@article(id=1, clang=1, ctype=1)
+
+// returns the current article id
+@articleId
+
+// returns the current article name
+@articleName
+```
+
+#### Helpers REDXAO
 
 ```blade
 @user
@@ -25,7 +39,7 @@ Folgende zusätzliche Blade Directives werden unterstützt:
 @endfrontend
 ```
 
-**Helpers strings**
+#### Helpers strings
 
 ```blade
 // hello-world
@@ -44,7 +58,7 @@ Folgende zusätzliche Blade Directives werden unterstützt:
 @lower('Hello World')
 ```
 
-**Helpers development**
+#### Helpers development
 
 ```blade
 // dump variable
