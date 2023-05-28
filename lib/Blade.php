@@ -6,17 +6,23 @@ use RyanChandler\Blade\Blade as RBlade;
 
 class Blade
 {
-    public static function make(string $view, array $data = [])
+    private RBlade $blade;
+    private rex_addon_interface $addon;
+
+    public function __construct()
     {
-        $addon = rex_addon::get('blade');
-        $blade = new RBlade($addon->getDataPath('views'), $addon->getCachePath('views'));
-
-        self::setDirectives($blade);
-
-        return $blade->make($view, $data)->render();
+        $this->addon = rex_addon::get('blade');
+        $this->blade = new RBlade($this->addon->getDataPath('views'), $this->addon->getCachePath('views'));
+        $this->setDirectives($this->blade);
     }
 
-    private static function setDirectives($blade): void
+    public static function make(string $view, array $data = []): string
+    {
+        $bladeInstance = rex::getProperty('bladeInstance');
+        return $bladeInstance->blade->make($view, $data)->render();
+    }
+
+    private function setDirectives(RBlade $blade): void
     {
         $directives = \rex_extension::registerPoint(new \rex_extension_point('BLADE_DIRECTIVES', [
             include 'directives/article.php',
