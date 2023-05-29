@@ -2,6 +2,17 @@
 
 Das Addon ermöglicht die Verwendung von Blade Templates in REDAXO.
 
+## Verwendung
+
+Um Blade Templates verwenden zu können, müssen diese innerhalb von Modulen oder Templates initialisiert werden.
+Hierfür wird die Methode `Blade::make()` verwendet. Diese Methode erwartet als Parameter den Pfad zur Blade Datei und gegebenenfalls ein Array mit Variablen, die an das Template übergeben werden sollen. Unterordner können mit einem Punkt getrennt werden.
+
+```php
+echo Blade::make('modules.mymodule.blade.php', ['foo' => 'bar']);
+```
+
+Die Templates werden im `data/addons/blade/views` Verzeichnis abgelegt.
+
 ## Directives
 
 Folgende zusätzliche Blade Directives werden unterstützt:
