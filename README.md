@@ -8,12 +8,28 @@ Um Blade Templates verwenden zu können, müssen diese innerhalb von Modulen ode
 Hierfür wird die Methode `Blade::make()` verwendet. Diese Methode erwartet als Parameter den Pfad zur Blade Datei und gegebenenfalls ein Array mit Variablen, die an das Template übergeben werden sollen. Unterordner können mit einem Punkt getrennt werden.
 
 ```php
-echo Blade::make('modules.mymodule.blade.php', ['foo' => 'bar']);
+echo Blade::make('modules.mymodule', ['foo' => 'bar']);
 ```
 
 Die Templates werden im `data/addons/blade/views` Verzeichnis abgelegt.
 
 Weitere Informationen zur Verwendung von Blade Templates finden sich in der [Blade Dokumentation](https://laravel.com/docs/10.x/blade). Spezifische Laravel Funktionalitäten werden nicht unterstützt. X-Components werden (aktuell leider) nicht unterstützt.
+
+Übergibt man innerhalb des Moduls den Modul-Kontext, bzw. rex_article_content, als `content` werden die Variablen automatisch an das Template übergeben und können unter dem jeweiligen Namen verwendet werden.
+
+```php
+echo Blade::make('modules.mymodule', ['content' => $this]);
+```
+
+```blade
+<h1>{{ $value1 }}</h1>
+
+<div class="wysiwyg">
+    {!! $value2 !!}
+</div>
+
+<a href="@articleUrl($link1)">@articleName($link1)</a>
+```
 
 ## Directives
 
