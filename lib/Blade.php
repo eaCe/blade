@@ -4,17 +4,16 @@ include_once __DIR__ . '/vendor/autoload.php';
 
 use Illuminate\Container\Container;
 use Illuminate\Support\Facades\Facade;
-use RyanChandler\Blade\Blade as RBlade;
 
 class Blade
 {
-    private RBlade $blade;
+    private BladeCompiler $blade;
     private rex_addon_interface $addon;
 
     public function __construct()
     {
         $this->addon = rex_addon::get('blade');
-        $this->blade = new RBlade($this->addon->getDataPath('views'), $this->addon->getCachePath('views'));
+        $this->blade = new BladeCompiler($this->addon->getDataPath('views'), $this->addon->getCachePath('views'));
         $this->setDirectives($this->blade);
     }
 
@@ -57,7 +56,7 @@ class Blade
         }
     }
 
-    private function setDirectives(RBlade $blade): void
+    private function setDirectives(BladeCompiler $blade): void
     {
         $directives = \rex_extension::registerPoint(new \rex_extension_point('BLADE_DIRECTIVES', [
             include 'directives/article.php',

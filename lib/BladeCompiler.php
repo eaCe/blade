@@ -1,31 +1,30 @@
 <?php
 
-namespace RyanChandler\Blade;
-
 use Illuminate\Config\Repository;
 use Illuminate\Events\Dispatcher;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Contracts\Container\Container as ContainerContract;
+use RyanChandler\Blade\Container as Container;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Facade;
-use Illuminate\View\Compilers\BladeCompiler;
+use Illuminate\View\Compilers\BladeCompiler as Compiler;
 use Illuminate\View\ViewServiceProvider;
 
 /**
  * @mixin \Illuminate\Contracts\View\Factory
  * @mixin \Illuminate\View\Compilers\BladeCompiler
  */
-class Blade
+class BladeCompiler
 {
     protected Factory $factory;
 
-    protected BladeCompiler $compiler;
+    protected Compiler $compiler;
 
     final public function __construct(
         protected string|array $viewPaths,
         protected string $cachePath,
-        protected ?ContainerContract $container = null
+        public bool $cache = false,
+        public ?ContainerContract $container = null
     ) {
         $this->viewPaths = Arr::wrap($viewPaths);
 
@@ -35,12 +34,12 @@ class Blade
     protected function init()
     {
         $this->container ??= new Container;
-
         $this->container->singleton('files', fn () => new Filesystem);
         $this->container->singleton('events', fn () => new Dispatcher);
         $this->container->singleton('config', fn () => new Repository([
             'view.paths' => $this->viewPaths,
             'view.compiled' => $this->cachePath,
+            'view.cache' => $this->cache,
         ]));
 
         (new ViewServiceProvider($this->container))->register();
