@@ -1,4 +1,4 @@
-@if($value2)
+@if($value1)
     <h1>{{ $value1 }}</h1>
 @endif
 
