@@ -13,7 +13,13 @@ class Blade
     public function __construct()
     {
         $this->addon = rex_addon::get('blade');
-        $this->blade = new BladeCompiler($this->addon->getDataPath('views'), $this->addon->getCachePath('views'));
+        $viewPaths = [$this->addon->getDataPath('views')];
+
+        if (rex_addon::exists('theme') && rex_addon::get('theme')->isAvailable()) {
+            $viewPaths[] = theme_path::views();
+        }
+
+        $this->blade = new BladeCompiler($viewPaths, $this->addon->getCachePath('views'));
         $this->setDirectives($this->blade);
     }
 
