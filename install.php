@@ -2,7 +2,9 @@
 
 /** @var \rex_addon $this */
 
-rex_dir::copy(
-    $this->getPath('templates'),
-    $this->getDataPath()
-);
+if (!is_dir($this->getPath('templates'))) {
+    rex_dir::copy(
+        $this->getPath('templates'),
+        $this->getDataPath()
+    );
+}
