@@ -23,4 +23,11 @@ return [
 
         return '<?php echo rex_article::getCurrent()->getName() ?>';
     },
+    'articleUrl' => static function ($articleId = null) {
+        if ($articleId) {
+            return "<?php echo rex_article::get($articleId)->getUrl() ?>";
+        }
+
+        return '<?php echo rex_article::getCurrent()->getUrl() ?>';
+    },
 ];
