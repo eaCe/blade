@@ -45,8 +45,13 @@ Neben den Standard Blade Directives, die in der [Blade Dokumentation](https://la
 // returns the current article id
 @articleId
 
-// returns the current article name
+// returns the current or given article name
 @articleName
+@articleName(1)
+
+// returns the current or given article url
+@articleUrl
+@articleUrl(1)
 ```
 
 #### Helpers REDXAO
