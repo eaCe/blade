@@ -33,7 +33,9 @@ echo Blade::make('modules.mymodule', ['content' => $this]);
 
 ## Directives
 
-Neben den Standard Blade Directives, die in der [Blade Dokumentation](https://laravel.com/docs/10.x/blade#blade-directives) beschrieben sind, werden folgende zusätzliche Directives unterstützt:
+Neben den Standard Blade Directives, die in der [Blade Dokumentation](https://laravel.com/docs/10.x/blade#blade-directives) beschrieben sind, werden untenstehende Directives unterstützt.
+
+Eigene Directives können über den Extension Point `BLADE_DIRECTIVES` registriert werden. Beispiele hierfür finden sich im directives Verzeichnis.
 
 #### Article
 
