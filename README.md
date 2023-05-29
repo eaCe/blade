@@ -11,7 +11,7 @@ Hierfür wird die Methode `Blade::make()` verwendet. Diese Methode erwartet als 
 echo Blade::make('modules.mymodule', ['foo' => 'bar']);
 ```
 
-Die Templates werden im `data/addons/blade/views` Verzeichnis abgelegt.
+Die Templates werden im `data/addons/blade/views` Verzeichnis abgelegt. Ist das Theme-Addon installiert, können die Templates auch im `public/theme/private/views` Verzeichnis abgelegt werden.
 
 Weitere Informationen zur Verwendung von Blade Templates finden sich in der [Blade Dokumentation](https://laravel.com/docs/10.x/blade). Spezifische Laravel Funktionalitäten werden nicht unterstützt. X-Components werden (aktuell leider) nicht unterstützt.
 
