@@ -13,9 +13,11 @@ echo Blade::make('modules.mymodule.blade.php', ['foo' => 'bar']);
 
 Die Templates werden im `data/addons/blade/views` Verzeichnis abgelegt.
 
+Weitere Informationen zur Verwendung von Blade Templates finden sich in der [Blade Dokumentation](https://laravel.com/docs/10.x/blade). Spezifische Laravel Funktionalitäten werden nicht unterstützt. X-Components werden (aktuell leider) nicht unterstützt.
+
 ## Directives
 
-Folgende zusätzliche Blade Directives werden unterstützt:
+Neben den Standard Blade Directives, die in der [Blade Dokumentation](https://laravel.com/docs/10.x/blade#blade-directives) beschrieben sind, werden folgende zusätzliche Directives unterstützt:
 
 #### Article
 
