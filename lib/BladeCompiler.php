@@ -33,6 +33,7 @@ class BladeCompiler
 
     protected function init()
     {
+        $this->cache = \rex_extension::registerPoint(new \rex_extension_point('BLADE_CACHE', $this->cache));
         $this->container ??= new Container;
         $this->container->singleton('files', fn () => new Filesystem);
         $this->container->singleton('events', fn () => new Dispatcher);
