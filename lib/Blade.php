@@ -66,6 +66,7 @@ class Blade
     {
         $directives = \rex_extension::registerPoint(new \rex_extension_point('BLADE_DIRECTIVES', [
             include 'directives/article.php',
+            include 'directives/category.php',
             include 'directives/helpers.php',
         ]));
 

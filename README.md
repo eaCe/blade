@@ -56,6 +56,17 @@ Eigene Directives können über den Extension Point `BLADE_DIRECTIVES` registrie
 @articleUrl(1)
 ```
 
+#### Article
+
+```blade
+// returns the current category id
+@categoryId
+
+// returns the current or given category name
+@categoryName
+@categoryName(1)
+```
+
 #### Helpers REDXAO
 
 ```blade
