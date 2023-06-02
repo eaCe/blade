@@ -84,6 +84,9 @@ Eigene Directives können über den Extension Point `BLADE_DIRECTIVES` registrie
 @frontend
     // environment is frontend
 @endfrontend
+
+// rex_i18n::msg($key)
+@translate('key')
 ```
 
 #### Helpers strings
