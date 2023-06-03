@@ -4,6 +4,7 @@ include_once __DIR__ . '/vendor/autoload.php';
 
 use Illuminate\Container\Container;
 use Illuminate\Support\Facades\Facade;
+use Illuminate\Support\Str;
 
 class Blade
 {
@@ -68,6 +69,7 @@ class Blade
             include 'directives/article.php',
             include 'directives/category.php',
             include 'directives/translate.php',
+            include 'directives/request.php',
             include 'directives/helpers.php',
         ]));
 
@@ -95,5 +97,13 @@ class Blade
             $argumentsArray[$argumentArray[0]] = $argumentArray[1];
         }
         return $argumentsArray;
+    }
+
+    public static function parseExpression($expression, $limit = PHP_INT_MAX)
+    {
+        return collect(explode(',', $expression, $limit))
+            ->map(function ($item) {
+                return trim($item);
+            });
     }
 }

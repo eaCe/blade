@@ -67,6 +67,20 @@ Eigene Directives können über den Extension Point `BLADE_DIRECTIVES` registrie
 @categoryName(1)
 ```
 
+#### Request
+
+```blade
+// same as rex_get()
+@get('param_name')
+@get('param_name', 'string')
+@get('param_name', 'string', 'default value')
+
+// same as rex_post()
+@post('param_name')
+@post('param_name', 'string')
+@post('param_name', 'string', 'default value')
+```
+
 #### Helpers REDXAO
 
 ```blade
