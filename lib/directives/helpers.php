@@ -13,6 +13,9 @@ return [
     'userId' => static function () {
         return '<?php echo rex::getUser()->getId() ?>';
     },
+    'userName' => static function () {
+        return '<?php echo rex::getUser()->getName() ?>';
+    },
 
     /**
      * environment.
