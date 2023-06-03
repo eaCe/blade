@@ -34,6 +34,18 @@ return [
     },
 
     /**
+     * escape.
+     */
+    'escape' => static function ($expression) {
+        $params = Blade::parseExpression($expression);
+
+        $value = $params->get(0);
+        $strategy = $params->get(1) ?? "'html'";
+
+        return "<?php echo rex_escape({$value}, {$strategy}) ?>";
+    },
+
+    /**
      * string manipulation.
      */
     'kebab' => static function ($value) {

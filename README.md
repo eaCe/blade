@@ -101,6 +101,10 @@ Eigene Directives können über den Extension Point `BLADE_DIRECTIVES` registrie
 
 // rex_i18n::msg($key)
 @translate('key')
+
+// rex_escape($value, $strategy = 'html')
+@escape('value')
+@escape('http://website.xyz', 'url')
 ```
 
 #### Helpers strings
