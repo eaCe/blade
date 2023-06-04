@@ -79,6 +79,14 @@ Eigene Directives können über den Extension Point `BLADE_DIRECTIVES` registrie
 @post('param_name')
 @post('param_name', 'string')
 @post('param_name', 'string', 'default value')
+
+// same as rex_request()
+@request('param_name')
+@request('param_name', 'string')
+@request('param_name', 'string', 'default value')
+
+// returns the current request method
+@requestMethod
 ```
 
 #### Helpers REDXAO
