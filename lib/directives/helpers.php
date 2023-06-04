@@ -32,6 +32,9 @@ return [
     'endfrontend' => static function () {
         return '<?php endif; ?>';
     },
+    'server' => static function () {
+        return '<?php rex::getServer() ?>';
+    },
 
     /**
      * escape.
