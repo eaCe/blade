@@ -32,6 +32,12 @@ return [
     'endfrontend' => static function () {
         return '<?php endif; ?>';
     },
+    'debug' => static function () {
+        return '<?php if (rex::isDebugMode()) : ?>';
+    },
+    'enddebug' => static function () {
+        return '<?php endif; ?>';
+    },
     'server' => static function () {
         return '<?php rex::getServer() ?>';
     },

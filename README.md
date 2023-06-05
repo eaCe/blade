@@ -107,6 +107,10 @@ Eigene Directives können über den Extension Point `BLADE_DIRECTIVES` registrie
     // environment is frontend
 @endfrontend
 
+@debug
+    // debug is enabled
+@enddebug
+
 // returns the server URL
 @server
 
