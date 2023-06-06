@@ -43,6 +43,19 @@ return [
     },
 
     /**
+     * properties.
+     */
+    'hasproperty' => static function ($key) {
+        return "<?php if (rex::hasProperty({$key}) : ?>";
+    },
+    'endhasproperty' => static function () {
+        return '<?php endif; ?>';
+    },
+    'property' => static function ($key) {
+        return "<?php echo rex::getProperty({$key}) ?>";
+    },
+
+    /**
      * escape.
      */
     'escape' => static function ($expression) {

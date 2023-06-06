@@ -120,6 +120,13 @@ Eigene Directives können über den Extension Point `BLADE_DIRECTIVES` registrie
 // rex_escape($value, $strategy = 'html')
 @escape('value')
 @escape('http://website.xyz', 'url')
+
+// returns the property value of the given key
+@property('key')
+
+@hasproperty('key')
+    // property exists
+@endhasproperty
 ```
 
 #### Helpers strings
