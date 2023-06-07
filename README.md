@@ -45,26 +45,26 @@ Eigene Directives können über den Extension Point `BLADE_DIRECTIVES` registrie
 @article(id=1, clang=1, ctype=1)
 
 // returns the current article id
-@articleId
+@articleid
 
 // returns the current or given article name
-@articleName
-@articleName(1)
+@articlename
+@articlename(1)
 
 // returns the current or given article url
-@articleUrl
-@articleUrl(1)
+@articleurl
+@articleurl(1)
 ```
 
 #### Article
 
 ```blade
 // returns the current category id
-@categoryId
+@categoryid
 
 // returns the current or given category name
-@categoryName
-@categoryName(1)
+@categoryname
+@categoryname(1)
 ```
 
 #### Request
@@ -97,7 +97,7 @@ Eigene Directives können über den Extension Point `BLADE_DIRECTIVES` registrie
 @enduser
 
 // returns the current user id
-@userId 
+@userid 
 
 @backend
     // environment is backend

@@ -10,10 +10,10 @@ return [
     'enduser' => static function () {
         return '<?php endif; ?>';
     },
-    'userId' => static function () {
+    'userid' => static function () {
         return '<?php echo rex::getUser()->getId() ?>';
     },
-    'userName' => static function () {
+    'username' => static function () {
         return '<?php echo rex::getUser()->getName() ?>';
     },
 

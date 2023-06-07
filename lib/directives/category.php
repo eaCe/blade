@@ -1,10 +1,10 @@
 <?php
 
 return [
-    'categoryId' => static function () {
+    'categoryid' => static function () {
         return '<?php echo rex_category::getCurrent()->getId() ?>';
     },
-    'categoryName' => static function ($categoryId = null) {
+    'categoryname' => static function ($categoryId = null) {
         if ($categoryId) {
             return "<?php echo rex_category::get($categoryId)->getName() ?>";
         }

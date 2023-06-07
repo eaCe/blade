@@ -13,17 +13,17 @@ return [
 
         return '<?php echo (new rex_article_content($id, $ctype, $clang))->getArticle(); ?>';
     },
-    'articleId' => static function () {
+    'articleid' => static function () {
         return '<?php echo rex_article::getCurrentId() ?>';
     },
-    'articleName' => static function ($articleId = null) {
+    'articlename' => static function ($articleId = null) {
         if ($articleId) {
             return "<?php echo rex_article::get($articleId)->getName() ?>";
         }
 
         return '<?php echo rex_article::getCurrent()->getName() ?>';
     },
-    'articleUrl' => static function ($articleId = null) {
+    'articleurl' => static function ($articleId = null) {
         if ($articleId) {
             return "<?php echo rex_article::get($articleId)->getUrl() ?>";
         }

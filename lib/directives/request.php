@@ -27,7 +27,7 @@ return [
 
         return "<?php echo rex_request({$key}, {$varType}, {$default}) ?>";
     },
-    'requestMethod' => static function () {
+    'requestmethod' => static function () {
         return "<?php echo rex_request_method() ?>";
     },
 ];
