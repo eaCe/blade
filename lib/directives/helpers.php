@@ -71,19 +71,19 @@ return [
      * string manipulation.
      */
     'kebab' => static function ($value) {
-        return "<?php echo Illuminate\Support\Str::kebab({$value}); ?>";
+        return "<?php echo Illuminate\\Support\\Str::kebab({$value}); ?>";
     },
     'snake' => static function ($value) {
-        return "<?php echo Illuminate\Support\Str::snake({$value}); ?>";
+        return "<?php echo Illuminate\\Support\\Str::snake({$value}); ?>";
     },
     'camel' => static function ($value) {
-        return "<?php echo Illuminate\Support\Str::camel({$value}); ?>";
+        return "<?php echo Illuminate\\Support\\Str::camel({$value}); ?>";
     },
     'upper' => static function ($value) {
-        return "<?php echo Illuminate\Support\Str::upper({$value}); ?>";
+        return "<?php echo Illuminate\\Support\\Str::upper({$value}); ?>";
     },
     'lower' => static function ($value) {
-        return "<?php echo Illuminate\Support\Str::lower({$value}); ?>";
+        return "<?php echo Illuminate\\Support\\Str::lower({$value}); ?>";
     },
 
     /**

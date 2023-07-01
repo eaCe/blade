@@ -1,14 +1,14 @@
 <?php
 
 use Illuminate\Config\Repository;
+use Illuminate\Contracts\Container\Container as ContainerContract;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Events\Dispatcher;
 use Illuminate\Filesystem\Filesystem;
-use Illuminate\Contracts\Container\Container as ContainerContract;
-use RyanChandler\Blade\Container as Container;
-use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\Arr;
 use Illuminate\View\Compilers\BladeCompiler as Compiler;
 use Illuminate\View\ViewServiceProvider;
+use RyanChandler\Blade\Container;
 
 /**
  * @mixin \Illuminate\Contracts\View\Factory
@@ -24,19 +24,27 @@ class BladeCompiler
         protected string|array $viewPaths,
         protected string $cachePath,
         public bool $cache = false,
-        public ?ContainerContract $container = null
+        public ?ContainerContract $container = null,
     ) {
         $this->viewPaths = Arr::wrap($viewPaths);
 
         $this->init();
     }
 
-    protected function init()
+    /**
+     * terminate the container.
+     */
+    public function teardown(): void
+    {
+        $this->container->terminate();
+    }
+
+    protected function init(): void
     {
         $this->cache = \rex_extension::registerPoint(new \rex_extension_point('BLADE_CACHE', $this->cache));
-        $this->container ??= new Container;
-        $this->container->singleton('files', fn () => new Filesystem);
-        $this->container->singleton('events', fn () => new Dispatcher);
+        $this->container ??= new Container();
+        $this->container->singleton('files', static fn () => new Filesystem());
+        $this->container->singleton('events', static fn () => new Dispatcher());
         $this->container->singleton('config', fn () => new Repository([
             'view.paths' => $this->viewPaths,
             'view.compiled' => $this->cachePath,
@@ -49,7 +57,7 @@ class BladeCompiler
         $this->compiler = $this->container->get('blade.compiler');
     }
 
-    public function __call(string $name, array $arguments)
+    public function __call(string $name, array $arguments): mixed
     {
         if (method_exists($this->compiler, $name)) {
             return $this->compiler->{$name}(...$arguments);
@@ -58,12 +66,7 @@ class BladeCompiler
         return $this->factory->{$name}(...$arguments);
     }
 
-    public function teardown()
-    {
-        $this->container->terminate();
-    }
-
-    public static function new(string $viewPath, string $cachePath, ?ContainerContract $container = null)
+    public static function new(string $viewPath, string $cachePath, ContainerContract $container = null)
     {
         return new static($viewPath, $cachePath, $container);
     }

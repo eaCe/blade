@@ -4,7 +4,6 @@ include_once __DIR__ . '/vendor/autoload.php';
 
 use Illuminate\Container\Container;
 use Illuminate\Support\Facades\Facade;
-use Illuminate\Support\Str;
 
 class Blade
 {
@@ -102,7 +101,7 @@ class Blade
     public static function parseExpression($expression, $limit = PHP_INT_MAX)
     {
         return collect(explode(',', $expression, $limit))
-            ->map(function ($item) {
+            ->map(static function ($item) {
                 return trim($item);
             });
     }

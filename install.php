@@ -5,6 +5,6 @@
 if (!is_dir($this->getDataPath('views'))) {
     rex_dir::copy(
         $this->getPath('templates'),
-        $this->getDataPath()
+        $this->getDataPath(),
     );
 }

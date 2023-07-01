@@ -1,4 +1,5 @@
 <?php
+
 return [
     'get' => static function ($expression) {
         $params = Blade::parseExpression($expression);
@@ -28,6 +29,6 @@ return [
         return "<?php echo rex_request({$key}, {$varType}, {$default}) ?>";
     },
     'requestmethod' => static function () {
-        return "<?php echo rex_request_method() ?>";
+        return '<?php echo rex_request_method() ?>';
     },
 ];
