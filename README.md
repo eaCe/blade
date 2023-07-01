@@ -67,6 +67,13 @@ Eigene Directives können über den Extension Point `BLADE_DIRECTIVES` registrie
 @categoryname(1)
 ```
 
+#### Media
+
+```blade
+// returns the path to the given media file
+@mediasrc('filename.jpg')
+```
+
 #### Request
 
 ```blade

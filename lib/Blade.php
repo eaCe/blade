@@ -4,6 +4,7 @@ include_once __DIR__ . '/vendor/autoload.php';
 
 use Illuminate\Container\Container;
 use Illuminate\Support\Facades\Facade;
+use Illuminate\Support\Str;
 
 class Blade
 {
@@ -67,6 +68,7 @@ class Blade
         $directives = \rex_extension::registerPoint(new \rex_extension_point('BLADE_DIRECTIVES', [
             include 'directives/article.php',
             include 'directives/category.php',
+            include 'directives/media.php',
             include 'directives/translate.php',
             include 'directives/request.php',
             include 'directives/helpers.php',
@@ -104,5 +106,31 @@ class Blade
             ->map(static function ($item) {
                 return trim($item);
             });
+    }
+
+    /**
+     * strip quotes from string.
+     *
+     * @return array|string|string[]
+     */
+    public static function strip(string $expression)
+    {
+        return str_replace(["'", '"'], '', $expression);
+    }
+
+    /**
+     * Remove the leading and trailing delimiter from a string.
+     */
+    public static function stripDelimiter(string $value, string $delimiter = "'"): string
+    {
+        if (Str::startsWith($value, $delimiter)) {
+            $value = Str::replaceFirst($delimiter, '', $value);
+        }
+
+        if (Str::endsWith($value, $delimiter)) {
+            $value = Str::replaceLast($delimiter, '', $value);
+        }
+
+        return $value;
     }
 }
