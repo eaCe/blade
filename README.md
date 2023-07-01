@@ -29,7 +29,7 @@ echo Blade::make('modules.mymodule', ['content' => $this]);
     {!! $value2 !!}
 </div>
 
-<a href="@articleUrl($link1)">@articleName($link1)</a>
+<a href="@articleurl($link1)">@articlename($link1)</a>
 ```
 
 ## Directives
