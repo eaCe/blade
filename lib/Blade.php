@@ -31,6 +31,15 @@ class Blade
     {
         $instance = rex::getProperty('bladeInstance');
 
+        /**
+         * check if view exists.
+         * use dump() to show error message for admins.
+         */
+        if (!$instance->blade->exists($view)) {
+            dump('View not found: ' . $view);
+            return '';
+        }
+
         if (isset($data['content']) && $data['content'] instanceof rex_article_content) {
             self::shareValues($instance, $data['content']);
         }
@@ -132,5 +141,33 @@ class Blade
         }
 
         return $value;
+    }
+
+    /**
+     * Adds the default output to newly created module if no output is set.
+     * @throws rex_sql_exception
+     */
+    public static function addModule(array $module): void
+    {
+        if (isset($module['output']) && '' !== $module['output']) {
+            return;
+        }
+
+        $moduleName = rex_string::normalize($module['name'], '-');
+
+        if (isset($module['key']) && '' !== $module['key']) {
+            $moduleName = $module['key'];
+        }
+
+        $output = '<?php echo Blade::make(\'modules.' . $moduleName . '\', [\'content\' => $this]); ?>';
+
+        $sql = rex_sql::factory();
+        $sql->setTable(rex::getTable('module'));
+        $sql->setWhere(['id' => $module['id']]);
+        $sql->setWhere(['name' => $module['name']]);
+        $sql->setValue('output', $output);
+        $sql->update();
+
+        rex_module_cache::delete($module['id']);
     }
 }
