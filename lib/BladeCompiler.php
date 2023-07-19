@@ -66,7 +66,7 @@ class BladeCompiler
         return $this->factory->{$name}(...$arguments);
     }
 
-    public static function new(string $viewPath, string $cachePath, ContainerContract $container = null)
+    public static function new(string $viewPath, string $cachePath, ?ContainerContract $container = null)
     {
         return new static($viewPath, $cachePath, $container);
     }
