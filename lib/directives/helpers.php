@@ -39,20 +39,20 @@ return [
         return '<?php endif; ?>';
     },
     'server' => static function () {
-        return '<?php rex::getServer() ?>';
+        return '<?php rex::getServer(); ?>';
     },
 
     /**
      * properties.
      */
     'hasproperty' => static function ($key) {
-        return "<?php if (rex::hasProperty({$key}) : ?>";
+        return "<?php if (rex::hasProperty({$key})) : ?>";
     },
     'endhasproperty' => static function () {
         return '<?php endif; ?>';
     },
     'property' => static function ($key) {
-        return "<?php echo rex::getProperty({$key}) ?>";
+        return "<?php echo rex::getProperty({$key}); ?>";
     },
 
     /**
