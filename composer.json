@@ -1,10 +1,24 @@
 {
   "require-dev": {
     "redaxo/php-cs-fixer-config": "^2.0",
-    "friendsofphp/php-cs-fixer": "^3.14"
+    "friendsofphp/php-cs-fixer": "^3.14",
+    "pestphp/pest": "^2.13",
+    "ryangjchandler/standalone-blade": "^0.2.0",
+    "mockery/mockery": "^1.6"
   },
   "scripts": {
     "cs-dry": "php-cs-fixer fix -v --ansi --dry-run --config=.php-cs-fixer.dist.php",
-    "cs-fix": "php-cs-fixer fix -v --ansi --config=.php-cs-fixer.dist.php"
+    "cs-fix": "php-cs-fixer fix -v --ansi --config=.php-cs-fixer.dist.php",
+    "test": "./vendor/bin/pest --configuration=phpunit.xml"
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "pestphp/pest-plugin": true
+    }
   }
 }
