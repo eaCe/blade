@@ -87,14 +87,8 @@ return [
     },
 
     /**
-     * dump, dump and die, var_dump.
+     * var_dump.
      */
-    'dump' => static function ($vars) {
-        return "<?php dump({$vars}); ?>";
-    },
-    'dd' => static function ($vars) {
-        return "<?php dd({$vars}); ?>";
-    },
     'vardump' => static function ($vars) {
         return "<?php echo '<pre>'; var_dump({$vars}); echo '</pre>' ?>";
     },
