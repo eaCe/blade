@@ -1,9 +1,17 @@
 {
+  "repositories": [
+    {
+      "type": "git",
+      "url": "https://github.com/eaCe/standalone-blade.git"
+    }
+  ],
+  "require": {
+    "ryangjchandler/standalone-blade": "dev-main"
+  },
   "require-dev": {
     "redaxo/php-cs-fixer-config": "^2.0",
     "friendsofphp/php-cs-fixer": "^3.14",
     "pestphp/pest": "^2.13",
-    "ryangjchandler/standalone-blade": "^0.2.0",
     "mockery/mockery": "^1.6"
   },
   "scripts": {
