@@ -9,6 +9,6 @@ return [
             return "<?php echo rex_category::get($categoryId)->getName() ?>";
         }
 
-        return '<?php echo rex_article::getCurrent()->getName() ?>';
+        return '<?php echo rex_category::getCurrent()->getName() ?>';
     },
 ];
