@@ -8,7 +8,14 @@ use Illuminate\Support\Str;
 
 class Blade
 {
+    /**
+     * The Blade compiler instance.
+     */
     private BladeCompiler $blade;
+
+    /**
+     * The addon instance.
+     */
     private rex_addon_interface $addon;
 
     public function __construct()
@@ -25,6 +32,8 @@ class Blade
     }
 
     /**
+     * Return a view with the given data.
+     *
      * @throws rex_exception
      */
     public static function make(string $view, array $data = []): string
@@ -48,7 +57,8 @@ class Blade
     }
 
     /**
-     * share values from article slice.
+     * Share values from article slice.
+     *
      * @throws rex_exception
      */
     private static function shareValues(self $instance, rex_article_content $content): void
@@ -72,9 +82,12 @@ class Blade
         }
     }
 
+    /**
+     * Set directives for the Blade compiler.
+     */
     private function setDirectives(BladeCompiler $blade): void
     {
-        $directives = \rex_extension::registerPoint(new \rex_extension_point('BLADE_DIRECTIVES', [
+        $directives = rex_extension::registerPoint(new rex_extension_point('BLADE_DIRECTIVES', [
             include 'directives/article.php',
             include 'directives/category.php',
             include 'directives/media.php',
@@ -94,6 +107,9 @@ class Blade
             });
     }
 
+    /**
+     * Get parsed arguments from a string.
+     */
     public static function getParsedArgs(string $arguments = ''): array
     {
         if (!$arguments) {
@@ -109,6 +125,12 @@ class Blade
         return $argumentsArray;
     }
 
+    /**
+     * Parse an expression into an array.
+     *
+     * @param int $limit
+     * @return mixed
+     */
     public static function parseExpression($expression, $limit = PHP_INT_MAX)
     {
         return collect(explode(',', $expression, $limit))
@@ -118,7 +140,7 @@ class Blade
     }
 
     /**
-     * strip quotes from string.
+     * Strip quotes from a string.
      *
      * @return array|string|string[]
      */
@@ -145,6 +167,7 @@ class Blade
 
     /**
      * Adds the default output to newly created module if no output is set.
+     *
      * @throws rex_sql_exception
      */
     public static function addModule(array $module): void
