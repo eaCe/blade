@@ -2,9 +2,10 @@
 
 namespace Tests;
 
-use PHPUnit\Framework\TestCase as BaseTestCase;
-use RyanChandler\Blade\Blade;
+include_once dirname(__DIR__, 1) . '/lib/Blade.php';
 
+use PHPUnit\Framework\TestCase as BaseTestCase;
+use RyanChandler\Blade\Blade as BladeCompiler;
 use function dirname;
 
 abstract class TestCase extends BaseTestCase
@@ -22,7 +23,7 @@ abstract class TestCase extends BaseTestCase
             return;
         }
 
-        $blade = new Blade('./views', './cache');
+        $blade = new BladeCompiler('./views', './cache');
         $this->addDirectives($blade);
 
         self::$blade = $blade;
